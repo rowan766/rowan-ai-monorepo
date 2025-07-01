@@ -1,0 +1,42 @@
+{
+  "name": "rowan-ai-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap",
+    "dev": "lerna run dev --parallel",
+    "publish": "lerna publish",
+    "version": "lerna version"
+  },
+  "keywords": [
+    "monorepo",
+    "lerna",
+    "pnpm",
+    "typescript",
+    "react"
+  ],
+  "author": "ro wan",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "lerna": "^8.2.2",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0"
+  },
+  "packageManager": "pnpm@10.10.0",
+    "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
