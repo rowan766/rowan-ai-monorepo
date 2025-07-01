@@ -1,0 +1,34 @@
+{
+  "name": "@rowan/rw-hooks",
+  "version": "1.0.0",
+  "description": "React hooks library for Rowan AI",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "typescript"
+  ],
+  "author": "ro wan",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "dependencies": {
+    "@rowan/rw-libs": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "react": "^19.1.0"
+  }
+}
