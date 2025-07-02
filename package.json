@@ -12,7 +12,8 @@
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run dev --parallel",
     "publish": "lerna publish",
-    "version": "lerna version"
+    "version": "lerna version",
+    "type-check": "lerna run type-check"
   },
   "keywords": [
     "monorepo",
