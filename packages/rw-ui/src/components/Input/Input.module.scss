@@ -1,0 +1,165 @@
+// packages/rw-ui/src/components/Input/Input.module.scss
+
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-color-primary;
+  margin-bottom: 4px;
+
+  &.required::after {
+    content: ' *';
+    color: $danger-color;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  background-color: white;
+  transition: $transition-base;
+
+  &:hover:not(.disabled) {
+    border-color: $primary-color;
+  }
+
+  &:focus-within:not(.disabled) {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+  }
+
+  &.error {
+    border-color: $danger-color;
+
+    &:focus-within {
+      border-color: $danger-color;
+      box-shadow: 0 0 0 2px rgba($danger-color, 0.1);
+    }
+  }
+
+  &.disabled {
+    background-color: $gray-50;
+    border-color: $gray-200;
+    cursor: not-allowed;
+  }
+
+  // 尺寸变体
+  &.small {
+    height: 28px;
+    padding: 0 8px;
+
+    .input {
+      font-size: 12px;
+    }
+  }
+
+  &.medium {
+    height: 36px;
+    padding: 0 12px;
+
+    .input {
+      font-size: 14px;
+    }
+  }
+
+  &.large {
+    height: 44px;
+    padding: 0 16px;
+
+    .input {
+      font-size: 16px;
+    }
+  }
+
+  // 有前缀时的样式
+  &.hasPrefix {
+    padding-left: 4px;
+
+    .input {
+      padding-left: 4px;
+    }
+  }
+
+  // 有后缀时的样式
+  &.hasSuffix {
+    padding-right: 4px;
+
+    .input {
+      padding-right: 4px;
+    }
+  }
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $text-color-primary;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $text-color-secondary;
+  }
+
+  &:disabled {
+    color: $text-color-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.prefix,
+.suffix {
+  display: flex;
+  align-items: center;
+  color: $text-color-secondary;
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: $text-color-secondary;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: $border-radius-small;
+  transition: $transition-base;
+
+  &:hover {
+    color: $text-color-primary;
+    background-color: $gray-100;
+  }
+}
+
+.errorMessages {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: $danger-color;
+  line-height: 1.4;
+}
+
+.helperText {
+  font-size: 12px;
+  color: $text-color-secondary;
+  line-height: 1.4;
+}
