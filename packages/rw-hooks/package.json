@@ -25,10 +25,11 @@
     "react": ">=16.8.0"
   },
   "dependencies": {
-    "@rowan/rw-libs": "workspace:*"
+    "@rowan/rw-libs": "1.0.1"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
     "react": "^19.1.0"
-  }
+  },
+  "gitHead": "e5a3cebd3077ee0fd19ce763489c62b074484150"
 }

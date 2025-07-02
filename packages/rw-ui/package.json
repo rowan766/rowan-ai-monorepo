@@ -23,8 +23,8 @@
   "author": "ro wan",
   "license": "ISC",
   "dependencies": {
-    "@rowan/rw-hooks": "workspace:*",
-    "@rowan/rw-libs": "workspace:*",
+    "@rowan/rw-hooks": "1.0.1",
+    "@rowan/rw-libs": "1.0.1",
     "clsx": "^2.0.0"
   },
   "peerDependencies": {
@@ -56,5 +56,6 @@
       "import": "./dist/styles.css",
       "require": "./dist/styles.css"
     }
-  }
+  },
+  "gitHead": "e5a3cebd3077ee0fd19ce763489c62b074484150"
 }

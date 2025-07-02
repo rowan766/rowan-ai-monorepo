@@ -1,0 +1,82 @@
+0 silly argv {
+0 silly argv   _: [ 'publish' ],
+0 silly argv   registry: 'http://localhost:4873',
+0 silly argv   composed: 'publish',
+0 silly argv   lernaVersion: '8.2.3',
+0 silly argv   '$0': 'D:\\nvm4w\\nodejs\\node_modules\\lerna\\dist\\cli.js',
+0 silly argv   bump: 'from-package'
+0 silly argv }
+1 notice cli v8.2.3
+2 verbose packageConfigs Explicit "packages" configuration found in lerna.json. Resolving packages using the configured glob(s): ["packages/*"]
+3 verbose rootPath D:\workspace_study\rowan-ai-monorepo
+4 info versioning independent
+5 verbose session cf29915605ae02c5
+6 verbose user-agent lerna/8.2.3/node@v20.18.3+x64 (win32)
+7 verbose git-describe undefined => "e5a3ceb"
+8 silly git-describe parsed => {"refCount":"7","sha":"e5a3ceb","isDirty":false}
+9 silly getProjectsWithUnpublishedPackages
+10 warn Unable to determine published version, assuming "@rowan/rw-hooks" unpublished.
+11 warn Unable to determine published version, assuming "@rowan/rw-ui" unpublished.
+12 warn Unable to determine published version, assuming "@rowan/rw-libs" unpublished.
+13 info publish Publishing packages to npm...
+14 notice Skipping all user and access validation due to third-party registry
+15 notice Make sure you're authenticated properly ¯\_(ツ)_/¯
+16 warn ENOLICENSE Packages @rowan/rw-hooks, @rowan/rw-libs, and @rowan/rw-ui are missing a license.
+16 warn ENOLICENSE One way to fix this is to add a LICENSE.md file to the root of this repository.
+16 warn ENOLICENSE See https://choosealicense.com for additional guidance.
+17 silly getCurrentSHA
+18 verbose getCurrentSHA e5a3cebd3077ee0fd19ce763489c62b074484150
+19 silly lifecycle No script for "prepublish" in "rowan-ai-monorepo", continuing
+20 silly lifecycle No script for "prepare" in "rowan-ai-monorepo", continuing
+21 silly lifecycle No script for "prepublishOnly" in "rowan-ai-monorepo", continuing
+22 silly lifecycle No script for "prepack" in "rowan-ai-monorepo", continuing
+23 verbose pack-directory packages\rw-libs
+24 silly lifecycle No script for "prepublish" in "@rowan/rw-libs", continuing
+25 silly lifecycle No script for "prepare" in "@rowan/rw-libs", continuing
+26 silly lifecycle No script for "prepublishOnly" in "@rowan/rw-libs", continuing
+27 silly lifecycle No script for "prepack" in "@rowan/rw-libs", continuing
+28 silly lifecycle No script for "postpack" in "@rowan/rw-libs", continuing
+29 verbose packed packages\rw-libs
+30 verbose pack-directory packages\rw-hooks
+31 silly lifecycle No script for "prepublish" in "@rowan/rw-hooks", continuing
+32 silly lifecycle No script for "prepare" in "@rowan/rw-hooks", continuing
+33 silly lifecycle No script for "prepublishOnly" in "@rowan/rw-hooks", continuing
+34 silly lifecycle No script for "prepack" in "@rowan/rw-hooks", continuing
+35 silly lifecycle No script for "postpack" in "@rowan/rw-hooks", continuing
+36 verbose packed packages\rw-hooks
+37 verbose pack-directory packages\rw-ui
+38 silly lifecycle No script for "prepublish" in "@rowan/rw-ui", continuing
+39 silly lifecycle No script for "prepare" in "@rowan/rw-ui", continuing
+40 silly lifecycle No script for "prepublishOnly" in "@rowan/rw-ui", continuing
+41 silly lifecycle No script for "prepack" in "@rowan/rw-ui", continuing
+42 silly lifecycle No script for "postpack" in "@rowan/rw-ui", continuing
+43 verbose packed packages\rw-ui
+44 silly lifecycle No script for "postpack" in "rowan-ai-monorepo", continuing
+45 verbose publish @rowan/rw-libs
+46 silly FetchError: request to http://localhost:4873/@rowan%2frw-libs failed, reason:
+46 silly     at ClientRequest.<anonymous> (D:\workspace_study\rowan-ai-monorepo\node_modules\.pnpm\minipass-fetch@3.0.5\node_modules\minipass-fetch\lib\index.js:130:14)
+46 silly     at ClientRequest.emit (node:events:518:28)
+46 silly     at emitErrorEvent (node:_http_client:101:11)
+46 silly     at _destroy (node:_http_client:884:9)
+46 silly     at onSocketNT (node:_http_client:904:5)
+46 silly     at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+46 silly  FetchError: request to http://localhost:4873/@rowan%2frw-libs failed, reason:
+46 silly     at ClientRequest.<anonymous> (D:\workspace_study\rowan-ai-monorepo\node_modules\.pnpm\minipass-fetch@3.0.5\node_modules\minipass-fetch\lib\index.js:130:14)
+46 silly     at ClientRequest.emit (node:events:518:28)
+46 silly     at emitErrorEvent (node:_http_client:101:11)
+46 silly     at _destroy (node:_http_client:884:9)
+46 silly     at onSocketNT (node:_http_client:904:5)
+46 silly     at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+46 silly   code: 'ECONNREFUSED',
+46 silly   errno: 'ECONNREFUSED',
+46 silly   type: 'system'
+46 silly }
+47 warn notice Package failed to publish: @rowan/rw-libs
+48 error ECONNREFUSED request to http://localhost:4873/@rowan%2frw-libs failed, reason:
+49 error errno "ECONNREFUSED" is not a valid exit code - exiting with code 1
+50 error FetchError: request to http://localhost:4873/@rowan%2frw-libs failed, reason:
+50 error     at ClientRequest.<anonymous> (D:\workspace_study\rowan-ai-monorepo\node_modules\.pnpm\minipass-fetch@3.0.5\node_modules\minipass-fetch\lib\index.js:130:14)
+50 error     at ClientRequest.emit (node:events:518:28)
+50 error     at emitErrorEvent (node:_http_client:101:11)
+50 error     at _destroy (node:_http_client:884:9)
+50 error     at onSocketNT (node:_http_client:904:5)

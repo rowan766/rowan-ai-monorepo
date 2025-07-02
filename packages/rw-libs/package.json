@@ -39,5 +39,6 @@
       "require": "./dist/utils/index.js",
       "types": "./dist/utils/index.d.ts"
     }
-  }
+  },
+  "gitHead": "e5a3cebd3077ee0fd19ce763489c62b074484150"
 }
