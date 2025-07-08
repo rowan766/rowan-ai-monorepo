@@ -2,6 +2,9 @@
 // Rowan UI 样式混入
 // ========================================
 
+// 导入 Sass 模块
+@use 'sass:color';
+
 // 导入变量
 @import './variables';
 
@@ -72,6 +75,13 @@
   justify-content: center;
 }
 
+// 添加 flex-center 混入（这个在 Button 组件中被使用）
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // 全尺寸覆盖
 @mixin full-overlay {
   position: absolute;
@@ -129,19 +139,19 @@
   border-color: $border;
 
   @if $hover-background ==null {
-    $hover-background: darken($background, 7.5%);
+    $hover-background: color.adjust($background, $lightness: -7.5%);
   }
 
   @if $hover-border ==null {
-    $hover-border: darken($border, 10%);
+    $hover-border: color.adjust($border, $lightness: -10%);
   }
 
   @if $active-background ==null {
-    $active-background: darken($background, 10%);
+    $active-background: color.adjust($background, $lightness: -10%);
   }
 
   @if $active-border ==null {
-    $active-border: darken($border, 12.5%);
+    $active-border: color.adjust($border, $lightness: -12.5%);
   }
 
   &:hover:not(:disabled):not(.disabled) {
@@ -368,6 +378,16 @@
   border-top: $border-width solid $color;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+// spinner 混入（别名）
+@mixin spinner($size: 16px, $color: $primary-color) {
+  @include loading-spinner($size, $color);
+}
+
+// spinner 混入（别名）
+@mixin spinner($size: 16px, $color: $primary-color) {
+  @include loading-spinner($size, $color);
 }
 
 // 淡入淡出

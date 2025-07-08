@@ -1,0 +1,34 @@
+{
+  "name": "web-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Storybook app for testing Rowan UI components",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "preview": "storybook dev -p 6006 --no-open"
+  },
+  "dependencies": {
+    "@rowan/rw-ui": "workspace:*",
+    "@rowan/rw-hooks": "workspace:*",
+    "@rowan/rw-libs": "workspace:*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "@storybook/react": "^7.6.7",
+    "@storybook/react-vite": "^7.6.7",
+    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/addon-interactions": "^7.6.7",
+    "@storybook/addon-docs": "^7.6.7",
+    "@storybook/addon-controls": "^7.6.7",
+    "@storybook/addon-viewport": "^7.6.7",
+    "storybook": "^7.6.7",
+    "vite": "^5.0.0"
+  }
+}

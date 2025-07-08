@@ -1,5 +1,6 @@
 // # 主入口文件
 // 统一导出所有模块
+export const version = '1.0.1';
 export * from './utils';
 // export * from './constants';
 // export * from './types';

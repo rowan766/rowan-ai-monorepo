@@ -2,7 +2,7 @@
 @import '../../styles/mixins.scss';
 
 .button {
-  @include flex-center;
+  @include center-flex;
   position: relative;
   border: none;
   border-radius: $border-radius-base;
@@ -10,7 +10,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
