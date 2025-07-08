@@ -5,22 +5,26 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/index.js',
+      file: 'dist/index.cjs.js',
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
+      exports: 'named'
     },
     {
       file: 'dist/index.esm.js',
-      format: 'esm',
+      format: 'es',
       sourcemap: true
     }
   ],
   plugins: [
-    nodeResolve(),
+    nodeResolve({
+      browser: true
+    }),
     typescript({
       tsconfig: './tsconfig.json',
       declaration: true,
-      declarationDir: './dist'
+      declarationDir: './dist',
+      rootDir: 'src'
     })
   ],
   external: [

@@ -1,1 +1,10 @@
-node_modules
+# Rollup 缓存文件
+**/.rollup.cache
+.rollup.cache
+
+# 构建输出
+**/dist/
+dist/
+
+# 依赖
+node_modules/

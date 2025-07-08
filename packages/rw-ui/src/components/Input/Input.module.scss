@@ -6,14 +6,14 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: $spacing-1;
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
   color: $text-color-primary;
-  margin-bottom: 4px;
+  margin-bottom: $spacing-1;
 
   &.required::after {
     content: ' *';
@@ -27,7 +27,7 @@
   align-items: center;
   border: 1px solid $border-color;
   border-radius: $border-radius-base;
-  background-color: white;
+  background-color: $white;
   transition: $transition-base;
 
   &:hover:not(.disabled) {
@@ -36,7 +36,7 @@
 
   &:focus-within:not(.disabled) {
     border-color: $primary-color;
-    box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    box-shadow: $box-shadow-focus;
   }
 
   &.error {
@@ -44,7 +44,7 @@
 
     &:focus-within {
       border-color: $danger-color;
-      box-shadow: 0 0 0 2px rgba($danger-color, 0.1);
+      box-shadow: $box-shadow-focus-danger;
     }
   }
 
@@ -56,47 +56,47 @@
 
   // 尺寸变体
   &.small {
-    height: 28px;
-    padding: 0 8px;
+    height: $input-height-sm;
+    padding: 0 $input-padding-x-sm;
 
     .input {
-      font-size: 12px;
+      font-size: $input-font-size-sm;
     }
   }
 
   &.medium {
-    height: 36px;
-    padding: 0 12px;
+    height: $input-height-base;
+    padding: 0 $input-padding-x-base;
 
     .input {
-      font-size: 14px;
+      font-size: $input-font-size-base;
     }
   }
 
   &.large {
-    height: 44px;
-    padding: 0 16px;
+    height: $input-height-lg;
+    padding: 0 $input-padding-x-lg;
 
     .input {
-      font-size: 16px;
+      font-size: $input-font-size-lg;
     }
   }
 
   // 有前缀时的样式
   &.hasPrefix {
-    padding-left: 4px;
+    padding-left: $spacing-1;
 
     .input {
-      padding-left: 4px;
+      padding-left: $spacing-1;
     }
   }
 
   // 有后缀时的样式
   &.hasSuffix {
-    padding-right: 4px;
+    padding-right: $spacing-1;
 
     .input {
-      padding-right: 4px;
+      padding-right: $spacing-1;
     }
   }
 }
@@ -124,8 +124,8 @@
   display: flex;
   align-items: center;
   color: $text-color-secondary;
-  font-size: 14px;
-  padding: 0 4px;
+  font-size: $font-size-sm;
+  padding: 0 $spacing-1;
 }
 
 .clearButton {
@@ -136,30 +136,129 @@
   border: none;
   color: $text-color-secondary;
   cursor: pointer;
-  padding: 2px;
-  border-radius: $border-radius-small;
+  padding: $spacing-1;
+  border-radius: $border-radius-sm;
   transition: $transition-base;
 
   &:hover {
     color: $text-color-primary;
     background-color: $gray-100;
   }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 1px;
+  }
 }
 
 .errorMessages {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: $spacing-1;
 }
 
 .errorMessage {
-  font-size: 12px;
+  font-size: $font-size-xs;
   color: $danger-color;
-  line-height: 1.4;
+  line-height: $line-height-normal;
+  display: flex;
+  align-items: center;
+  gap: $spacing-1;
+
+  &::before {
+    content: '⚠';
+    font-size: $font-size-sm;
+    flex-shrink: 0;
+  }
 }
 
 .helperText {
-  font-size: 12px;
+  font-size: $font-size-xs;
   color: $text-color-secondary;
-  line-height: 1.4;
+  line-height: $line-height-normal;
+}
+
+// 响应式调整
+@include media-breakpoint-down(sm) {
+  .container {
+    .label {
+      font-size: $font-size-xs;
+    }
+
+    .inputWrapper {
+      &.small {
+        height: 24px;
+        padding: 0 $spacing-1;
+      }
+
+      &.medium {
+        height: 32px;
+        padding: 0 $spacing-2;
+      }
+
+      &.large {
+        height: 40px;
+        padding: 0 $spacing-3;
+      }
+    }
+  }
+}
+
+// 暗色主题支持
+@media (prefers-color-scheme: dark) {
+  .inputWrapper {
+    background-color: $gray-800;
+    border-color: $gray-600;
+
+    &:hover:not(.disabled) {
+      border-color: lighten($primary-color, 20%);
+    }
+
+    &:focus-within:not(.disabled) {
+      border-color: lighten($primary-color, 20%);
+    }
+
+    &.disabled {
+      background-color: $gray-700;
+      border-color: $gray-600;
+    }
+  }
+
+  .input {
+    color: $white;
+
+    &::placeholder {
+      color: $gray-400;
+    }
+
+    &:disabled {
+      color: $gray-500;
+    }
+  }
+
+  .label {
+    color: $gray-200;
+  }
+
+  .prefix,
+  .suffix {
+    color: $gray-400;
+  }
+
+  .clearButton {
+    color: $gray-400;
+
+    &:hover {
+      color: $white;
+      background-color: $gray-700;
+    }
+  }
+
+  .helperText {
+    color: $gray-400;
+  }
+
+  .errorMessage {
+    color: lighten($danger-color, 20%);
+  }
 }

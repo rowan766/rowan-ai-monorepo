@@ -2,9 +2,17 @@
   "name": "@rowan/rw-libs",
   "version": "1.0.1",
   "description": "Common utility libraries for Rowan AI",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -22,23 +30,10 @@
   "author": "ro wan",
   "license": "ISC",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-typescript": "^11.1.0",
-    "rollup": "^3.0.0",
-    "tslib": "^2.5.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^3.29.4",
+    "tslib": "^2.6.2",
     "typescript": "^5.0.0"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils/index.esm.js",
-      "require": "./dist/utils/index.js",
-      "types": "./dist/utils/index.d.ts"
-    }
-  },
-  "gitHead": "e5a3cebd3077ee0fd19ce763489c62b074484150"
+  }
 }

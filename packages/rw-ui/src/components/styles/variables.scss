@@ -1,42 +1,190 @@
-// 颜色系统
-$primary-color: #1890ff;
-$success-color: #52c41a;
-$warning-color: #faad14;
-$danger-color: #f5222d;
+// ========================================
+// Rowan UI 设计系统变量
+// ========================================
 
-// 灰度色彩
-$gray-50: #fafafa;
-$gray-100: #f5f5f5;
-$gray-200: #e8e8e8;
-$gray-300: #d9d9d9;
-$gray-400: #bfbfbf;
-$gray-500: #8c8c8c;
-$gray-600: #595959;
-$gray-700: #434343;
-$gray-800: #262626;
-$gray-900: #1f1f1f;
+// 颜色系统
+// ========================================
+
+// 主色调
+$primary-color: #007bff !default;
+$primary-light: #66b3ff !default;
+$primary-dark: #0056b3 !default;
+
+// 辅助色
+$secondary-color: #6c757d !default;
+$success-color: #28a745 !default;
+$danger-color: #dc3545 !default;
+$warning-color: #ffc107 !default;
+$info-color: #17a2b8 !default;
 
 // 文本颜色
-$text-color-primary: rgba(0, 0, 0, 0.88);
-$text-color-secondary: rgba(0, 0, 0, 0.65);
-$text-color-disabled: rgba(0, 0, 0, 0.25);
+$text-color-primary: #212529 !default;
+$text-color-secondary: #6c757d !default;
+$text-color-disabled: #adb5bd !default;
+$text-color-muted: #868e96 !default;
 
-// 边框
-$border-color: $gray-300;
-$border-radius-base: 6px;
-$border-radius-small: 4px;
-$border-radius-large: 8px;
+// 背景颜色
+$bg-color-primary: #ffffff !default;
+$bg-color-secondary: #f8f9fa !default;
+$bg-color-light: #f1f3f4 !default;
+$bg-color-dark: #343a40 !default;
 
-// 间距
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
+// 灰色系
+$white: #ffffff !default;
+$gray-50: #f9fafb !default;
+$gray-100: #f3f4f6 !default;
+$gray-200: #e5e7eb !default;
+$gray-300: #d1d5db !default;
+$gray-400: #9ca3af !default;
+$gray-500: #6b7280 !default;
+$gray-600: #4b5563 !default;
+$gray-700: #374151 !default;
+$gray-800: #1f2937 !default;
+$gray-900: #111827 !default;
+$black: #000000 !default;
+
+// 边框和分割线
+$border-color: #dee2e6 !default;
+$border-color-light: #e9ecef !default;
+$border-color-dark: #adb5bd !default;
+$divider-color: #e1e5e9 !default;
+
+// 字体系统
+// ========================================
+
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !default;
+$font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
+
+// 字体大小
+$font-size-xs: 0.75rem !default; // 12px
+$font-size-sm: 0.875rem !default; // 14px
+$font-size-base: 1rem !default; // 16px
+$font-size-lg: 1.125rem !default; // 18px
+$font-size-xl: 1.25rem !default; // 20px
+$font-size-2xl: 1.5rem !default; // 24px
+$font-size-3xl: 1.875rem !default; // 30px
+$font-size-4xl: 2.25rem !default; // 36px
+
+// 字重
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extrabold: 800 !default;
+
+// 行高
+$line-height-tight: 1.25 !default;
+$line-height-normal: 1.5 !default;
+$line-height-relaxed: 1.75 !default;
+
+// 间距系统
+// ========================================
+
+$spacing-0: 0 !default;
+$spacing-1: 0.25rem !default; // 4px
+$spacing-2: 0.5rem !default; // 8px
+$spacing-3: 0.75rem !default; // 12px
+$spacing-4: 1rem !default; // 16px
+$spacing-5: 1.25rem !default; // 20px
+$spacing-6: 1.5rem !default; // 24px
+$spacing-7: 1.75rem !default; // 28px
+$spacing-8: 2rem !default; // 32px
+$spacing-9: 2.25rem !default; // 36px
+$spacing-10: 2.5rem !default; // 40px
+$spacing-12: 3rem !default; // 48px
+$spacing-16: 4rem !default; // 64px
+$spacing-20: 5rem !default; // 80px
+$spacing-24: 6rem !default; // 96px
+
+// 圆角
+// ========================================
+
+$border-radius-none: 0 !default;
+$border-radius-sm: 0.125rem !default; // 2px
+$border-radius-base: 0.25rem !default; // 4px
+$border-radius-md: 0.375rem !default; // 6px
+$border-radius-lg: 0.5rem !default; // 8px
+$border-radius-xl: 0.75rem !default; // 12px
+$border-radius-2xl: 1rem !default; // 16px
+$border-radius-full: 9999px !default;
 
 // 阴影
-$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
-$shadow-md: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+// ========================================
 
-// 动画
-$transition-base: all 0.2s ease;
+$box-shadow-none: none !default;
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !default;
+$box-shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !default;
+$box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !default;
+$box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !default;
+$box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !default;
+$box-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !default;
+
+// 焦点阴影
+$box-shadow-focus: 0 0 0 3px rgba($primary-color, 0.15) !default;
+$box-shadow-focus-danger: 0 0 0 3px rgba($danger-color, 0.15) !default;
+
+// 过渡动画
+// ========================================
+
+$transition-duration-fast: 0.15s !default;
+$transition-duration-base: 0.2s !default;
+$transition-duration-slow: 0.3s !default;
+
+$transition-timing-function: ease-in-out !default;
+
+$transition-base: all $transition-duration-base $transition-timing-function !default;
+$transition-fast: all $transition-duration-fast $transition-timing-function !default;
+$transition-slow: all $transition-duration-slow $transition-timing-function !default;
+
+// 组件特定变量
+// ========================================
+
+// 按钮
+$button-padding-y-sm: $spacing-1 !default;
+$button-padding-x-sm: $spacing-2 !default;
+$button-padding-y-base: $spacing-2 !default;
+$button-padding-x-base: $spacing-4 !default;
+$button-padding-y-lg: $spacing-3 !default;
+$button-padding-x-lg: $spacing-6 !default;
+
+$button-font-size-sm: $font-size-sm !default;
+$button-font-size-base: $font-size-base !default;
+$button-font-size-lg: $font-size-lg !default;
+
+// 输入框
+$input-padding-y-sm: $spacing-1 !default;
+$input-padding-x-sm: $spacing-2 !default;
+$input-padding-y-base: $spacing-2 !default;
+$input-padding-x-base: $spacing-3 !default;
+$input-padding-y-lg: $spacing-3 !default;
+$input-padding-x-lg: $spacing-4 !default;
+
+$input-font-size-sm: $font-size-sm !default;
+$input-font-size-base: $font-size-base !default;
+$input-font-size-lg: $font-size-lg !default;
+
+$input-height-sm: 28px !default;
+$input-height-base: 36px !default;
+$input-height-lg: 44px !default;
+
+// Z-index
+// ========================================
+
+$z-index-dropdown: 1000 !default;
+$z-index-sticky: 1020 !default;
+$z-index-fixed: 1030 !default;
+$z-index-modal-backdrop: 1040 !default;
+$z-index-modal: 1050 !default;
+$z-index-popover: 1060 !default;
+$z-index-tooltip: 1070 !default;
+
+// 断点（响应式）
+// ========================================
+
+$breakpoint-xs: 0 !default;
+$breakpoint-sm: 576px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 992px !default;
+$breakpoint-xl: 1200px !default;
+$breakpoint-2xl: 1400px !default;

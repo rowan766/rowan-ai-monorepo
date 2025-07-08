@@ -1,4 +1,4 @@
-// packages/rw-ui/src/types/index.ts
+import React from 'react';
 
 // 通用组件类型定义
 export interface BaseComponentProps {
@@ -12,6 +12,9 @@ export type Size = 'small' | 'medium' | 'large';
 
 // 状态类型
 export type Status = 'success' | 'warning' | 'error' | 'info';
+
+// 变体类型
+export type Variant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
 // 主题类型
 export interface Theme {

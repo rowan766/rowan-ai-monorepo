@@ -1,0 +1,122 @@
+// FormField 组件样式
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+
+  .label {
+    flex: 0 0 120px;
+    margin-top: 0.5rem; // 对齐输入框
+  }
+
+  .fieldContent {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// 标签样式
+.label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+
+  .required {
+    color: #dc2626;
+    margin-left: 0.125rem;
+  }
+}
+
+// 字段内容区域
+.fieldContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+// 描述文本
+.description {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+// 错误信息
+.error {
+  font-size: 0.75rem;
+  color: #dc2626;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &::before {
+    content: '⚠';
+    font-size: 0.875rem;
+  }
+}
+
+// 错误状态
+.hasError {
+  .label {
+    color: #dc2626;
+  }
+
+  // 让输入框显示错误状态（需要输入框组件支持）
+  input,
+  textarea,
+  select {
+    border-color: #dc2626;
+
+    &:focus {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    }
+  }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .horizontal {
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .label {
+      flex: none;
+      margin-top: 0;
+    }
+  }
+}
+
+// 暗色主题支持
+@media (prefers-color-scheme: dark) {
+  .label {
+    color: #d1d5db;
+
+    .required {
+      color: #f87171;
+    }
+  }
+
+  .description {
+    color: #9ca3af;
+  }
+
+  .error {
+    color: #f87171;
+  }
+
+  .hasError .label {
+    color: #f87171;
+  }
+}

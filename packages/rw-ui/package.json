@@ -2,9 +2,18 @@
   "name": "@rowan/rw-ui",
   "version": "1.0.1",
   "description": "React UI component library for Rowan AI",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
   "files": [
     "dist"
   ],
@@ -20,42 +29,25 @@
     "components",
     "typescript"
   ],
-  "author": "ro wan",
-  "license": "ISC",
-  "dependencies": {
-    "@rowan/rw-hooks": "1.0.1",
-    "@rowan/rw-libs": "1.0.1",
-    "clsx": "^2.0.0"
-  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "dependencies": {
+    "@rowan/rw-libs": "workspace:*",
+    "@rowan/rw-hooks": "workspace:*"
+  },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-typescript": "^11.1.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "rollup": "^3.0.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "rollup-plugin-postcss": "^4.0.2",
-    "sass": "^1.60.0",
-    "tslib": "^2.5.0",
+    "autoprefixer": "^10.4.19",
+    "sass": "^1.77.6",
+    "rollup": "^3.29.4",
     "typescript": "^5.0.0"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./styles": {
-      "import": "./dist/styles.css",
-      "require": "./dist/styles.css"
-    }
-  },
-  "gitHead": "e5a3cebd3077ee0fd19ce763489c62b074484150"
+  }
 }

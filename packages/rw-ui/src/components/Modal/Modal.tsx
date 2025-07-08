@@ -1,9 +1,5 @@
-// packages/rw-ui/src/components/Modal/Modal.tsx
-
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import clsx from 'clsx';
-import { useToggle } from '@rowan/rw-hooks';
 import styles from './Modal.module.scss';
 
 export interface ModalProps {
@@ -43,25 +39,27 @@ export interface ModalProps {
   getContainer?: () => HTMLElement;
 }
 
-export const Modal: React.FC<ModalProps> = ({
-  open,
-  onClose,
-  title,
-  children,
-  footer,
-  width = 520,
-  closable = true,
-  maskClosable = true,
-  mask = true,
-  maskStyle,
-  style,
-  className,
-  wrapClassName,
-  zIndex = 1000,
-  destroyOnClose = false,
-  centered = true,
-  getContainer,
-}) => {
+export const Modal: React.FC<ModalProps> = (props) => {
+  const {
+    open,
+    onClose,
+    title,
+    children,
+    footer,
+    width = 520,
+    closable = true,
+    maskClosable = true,
+    mask = true,
+    maskStyle,
+    style,
+    className = '',
+    wrapClassName = '',
+    zIndex = 1000,
+    destroyOnClose = false,
+    centered = true,
+    getContainer,
+  } = props;
+
   // 处理 ESC 键关闭
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -72,7 +70,6 @@ export const Modal: React.FC<ModalProps> = ({
 
     if (open) {
       document.addEventListener('keydown', handleEsc);
-      // 防止背景滚动
       document.body.style.overflow = 'hidden';
     }
 
@@ -82,95 +79,118 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [open, onClose]);
 
-  // 处理遮罩层点击
-  const handleMaskClick = (e: React.MouseEvent) => {
-    if (maskClosable && e.target === e.currentTarget && onClose) {
-      onClose();
-    }
-  };
-
   // 如果未打开且设置了销毁时不保留，则不渲染
   if (!open && destroyOnClose) {
     return null;
   }
 
-  const modalContent = (
-    <div
-      className={clsx(styles.wrapper, wrapClassName)}
-      style={{ zIndex, display: open ? 'flex' : 'none' }}
-    >
-      {/* 遮罩层 */}
-      {mask && (
-        <div
-          className={clsx(styles.mask, { [styles.maskHidden]: !open })}
-          style={maskStyle}
-          onClick={handleMaskClick}
-        />
-      )}
+  // 组合类名的函数
+  const combineClasses = (...classes: (string | boolean | undefined)[]) => {
+    return classes.filter(Boolean).join(' ');
+  };
 
-      {/* 模态框容器 */}
-      <div
-        className={clsx(
-          styles.container,
-          {
-            [styles.centered]: centered,
-            [styles.hidden]: !open,
-          }
-        )}
-        onClick={handleMaskClick}
-      >
-        {/* 模态框主体 */}
-        <div
-          className={clsx(styles.modal, className)}
-          style={{ width, ...style }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* 头部 */}
-          {(title || closable) && (
-            <div className={styles.header}>
-              {title && <div className={styles.title}>{title}</div>}
-              {closable && (
-                <button
-                  className={styles.closeButton}
-                  onClick={onClose}
-                  aria-label="关闭"
-                >
-                  <CloseIcon />
-                </button>
-              )}
-            </div>
-          )}
+  // 事件处理
+  const handleMaskClick = (e: any) => {
+    if (maskClosable && e.target === e.currentTarget && onClose) {
+      onClose();
+    }
+  };
 
-          {/* 内容 */}
-          <div className={styles.body}>{children}</div>
+  const handleCloseClick = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
 
-          {/* 底部 */}
-          {footer && <div className={styles.footer}>{footer}</div>}
-        </div>
-      </div>
-    </div>
-  );
+  const stopPropagation = (e: any) => {
+    e.stopPropagation();
+  };
+
+  // 样式计算
+  const wrapperStyle = {
+    zIndex: zIndex,
+    display: open ? 'flex' : 'none'
+  };
+
+  const modalStyle = {
+    width: typeof width === 'number' ? width + 'px' : width,
+    ...(style || {})
+  };
+
+  const modalContent = React.createElement('div', {
+    className: combineClasses(styles.wrapper, wrapClassName),
+    style: wrapperStyle
+  }, [
+    // 遮罩层
+    mask && React.createElement('div', {
+      key: 'mask',
+      className: combineClasses(styles.mask, !open && styles.maskHidden),
+      style: maskStyle,
+      onClick: handleMaskClick
+    }),
+    
+    // 模态框容器
+    React.createElement('div', {
+      key: 'container',
+      className: combineClasses(
+        styles.container,
+        centered && styles.centered,
+        !open && styles.hidden
+      ),
+      onClick: handleMaskClick
+    }, 
+      // 模态框主体
+      React.createElement('div', {
+        className: combineClasses(styles.modal, className),
+        style: modalStyle,
+        onClick: stopPropagation
+      }, [
+        // 头部
+        (title || closable) && React.createElement('div', {
+          key: 'header',
+          className: styles.header
+        }, [
+          title && React.createElement('div', {
+            key: 'title',
+            className: styles.title
+          }, title),
+          
+          closable && React.createElement('button', {
+            key: 'close',
+            className: styles.closeButton,
+            onClick: handleCloseClick,
+            'aria-label': '关闭',
+            type: 'button'
+          }, React.createElement('svg', {
+            width: '14',
+            height: '14',
+            viewBox: '0 0 14 14',
+            fill: 'none'
+          }, React.createElement('path', {
+            d: 'M13 1L1 13M1 1L13 13',
+            stroke: 'currentColor',
+            strokeWidth: '2',
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round'
+          })))
+        ]),
+        
+        // 内容
+        React.createElement('div', {
+          key: 'body',
+          className: styles.body
+        }, children),
+        
+        // 底部
+        footer && React.createElement('div', {
+          key: 'footer',
+          className: styles.footer
+        }, footer)
+      ])
+    )
+  ]);
 
   // 渲染到指定容器或 body
   const container = getContainer ? getContainer() : document.body;
   return createPortal(modalContent, container);
 };
-
-// 关闭图标组件
-const CloseIcon: React.FC = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M13 1L1 13M1 1L13 13"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);

@@ -2,9 +2,17 @@
   "name": "@rowan/rw-hooks",
   "version": "1.0.1",
   "description": "React hooks library for Rowan AI",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -25,11 +33,14 @@
     "react": ">=16.8.0"
   },
   "dependencies": {
-    "@rowan/rw-libs": "1.0.1"
+    "@rowan/rw-libs": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^19.1.8",
-    "react": "^19.1.0"
-  },
-  "gitHead": "e5a3cebd3077ee0fd19ce763489c62b074484150"
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^3.29.4",
+    "typescript": "^5.0.0"
+  }
 }

@@ -1,5 +1,5 @@
 // # 本地存储Hook
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 /**
  * 本地存储Hook

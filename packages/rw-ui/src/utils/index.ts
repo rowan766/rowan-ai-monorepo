@@ -1,4 +1,5 @@
 import clsx, { ClassValue } from 'clsx';
+import React from 'react';
 
 /**
  * 类名合并工具函数
@@ -88,3 +89,15 @@ export const mergeRefs = <T = any>(
     });
   };
 };
+
+// 主题工具
+export const getThemeVariable = (variable: string): string => {
+  return `var(--${variable})`;
+};
+
+// 尺寸映射
+export const sizeMap = {
+  small: { padding: '4px 8px', fontSize: '12px' },
+  medium: { padding: '8px 16px', fontSize: '14px' },
+  large: { padding: '12px 24px', fontSize: '16px' },
+} as const;

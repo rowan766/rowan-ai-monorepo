@@ -1,44 +1,424 @@
-// Flex 布局
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+// ========================================
+// Rowan UI 样式混入
+// ========================================
 
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+// 导入变量
+@import './variables';
 
-// 加载动画
-@mixin spinner($size: 20px) {
-  width: $size;
-  height: $size;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: currentColor;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+// 清除浮动
+// ========================================
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }
 
-// 文本省略
+// 文本处理
+// ========================================
+
+// 单行文本省略
 @mixin text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// 清除浮动
-@mixin clearfix {
-  &::after {
-    content: '';
-    display: table;
-    clear: both;
+// 多行文本省略
+@mixin text-ellipsis-multiline($lines: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+}
+
+// 文本不可选择
+@mixin user-select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// 布局和定位
+// ========================================
+
+// 绝对居中
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Flex 居中
+@mixin center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flex 垂直居中
+@mixin center-flex-vertical {
+  display: flex;
+  align-items: center;
+}
+
+// Flex 水平居中
+@mixin center-flex-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+// 全尺寸覆盖
+@mixin full-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// 按钮样式
+// ========================================
+
+// 按钮基础样式
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border-radius: $border-radius-base;
+  transition: $transition-base;
+  text-decoration: none;
+  font-family: inherit;
+
+  &:focus {
+    outline: 0;
+    box-shadow: $box-shadow-focus;
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// 按钮尺寸
+@mixin button-size($padding-y, $padding-x, $font-size, $border-radius: $border-radius-base) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  line-height: 1.5;
+}
+
+// 按钮变体样式
+@mixin button-variant($color, $background, $border: $background, $hover-background: null, $hover-border: null, $active-background: null, $active-border: null) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  @if $hover-background ==null {
+    $hover-background: darken($background, 7.5%);
+  }
+
+  @if $hover-border ==null {
+    $hover-border: darken($border, 10%);
+  }
+
+  @if $active-background ==null {
+    $active-background: darken($background, 10%);
+  }
+
+  @if $active-border ==null {
+    $active-border: darken($border, 12.5%);
+  }
+
+  &:hover:not(:disabled):not(.disabled) {
+    color: $color;
+    background-color: $hover-background;
+    border-color: $hover-border;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($border, 0.25);
+  }
+
+  &:active:not(:disabled):not(.disabled) {
+    color: $color;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+}
+
+// 输入框样式
+// ========================================
+
+// 输入框基础样式
+@mixin input-base {
+  display: block;
+  width: 100%;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $text-color-primary;
+  background-color: $bg-color-primary;
+  background-image: none;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
+  transition: $transition-base;
+
+  &:focus {
+    color: $text-color-primary;
+    background-color: $bg-color-primary;
+    border-color: $primary-color;
+    outline: 0;
+    box-shadow: $box-shadow-focus;
+  }
+
+  &::placeholder {
+    color: $text-color-secondary;
+    opacity: 1;
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: $gray-100;
+    border-color: $gray-300;
+    opacity: 1;
+    cursor: not-allowed;
+  }
+}
+
+// 输入框尺寸
+@mixin input-size($padding-y, $padding-x, $font-size, $height: null) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+
+  @if $height !=null {
+    height: $height;
+  }
+}
+
+// 输入框状态
+@mixin input-state($border-color, $focus-color: $border-color) {
+  border-color: $border-color;
+
+  &:focus {
+    border-color: $focus-color;
+    box-shadow: 0 0 0 3px rgba($focus-color, 0.15);
+  }
+}
+
+// 阴影效果
+// ========================================
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
+// 渐变背景
+@mixin gradient-x($start-color: $gray-700, $end-color: $gray-800, $start-percent: 0%, $end-percent: 100%) {
+  background-image: linear-gradient(90deg, $start-color $start-percent, $end-color $end-percent);
+}
+
+@mixin gradient-y($start-color: $gray-700, $end-color: $gray-800, $start-percent: 0%, $end-percent: 100%) {
+  background-image: linear-gradient(180deg, $start-color $start-percent, $end-color $end-percent);
+}
+
+// 响应式断点
+// ========================================
+@mixin media-breakpoint-up($name) {
+  @if $name ==xs {
+    @media (min-width: #{$breakpoint-xs}) {
+      @content;
+    }
+  }
+
+  @else if $name ==sm {
+    @media (min-width: #{$breakpoint-sm}) {
+      @content;
+    }
+  }
+
+  @else if $name ==md {
+    @media (min-width: #{$breakpoint-md}) {
+      @content;
+    }
+  }
+
+  @else if $name ==lg {
+    @media (min-width: #{$breakpoint-lg}) {
+      @content;
+    }
+  }
+
+  @else if $name ==xl {
+    @media (min-width: #{$breakpoint-xl}) {
+      @content;
+    }
+  }
+
+  @else if $name ==2xl {
+    @media (min-width: #{$breakpoint-2xl}) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-down($name) {
+  @if $name ==xs {
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      @content;
+    }
+  }
+
+  @else if $name ==sm {
+    @media (max-width: #{$breakpoint-md - 1px}) {
+      @content;
+    }
+  }
+
+  @else if $name ==md {
+    @media (max-width: #{$breakpoint-lg - 1px}) {
+      @content;
+    }
+  }
+
+  @else if $name ==lg {
+    @media (max-width: #{$breakpoint-xl - 1px}) {
+      @content;
+    }
+  }
+
+  @else if $name ==xl {
+    @media (max-width: #{$breakpoint-2xl - 1px}) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper) {
+  @include media-breakpoint-up($lower) {
+    @include media-breakpoint-down($upper) {
+      @content;
+    }
+  }
+}
+
+// 可访问性
+// ========================================
+
+// 仅屏幕阅读器可见
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// 恢复 sr-only 隐藏
+@mixin sr-only-focusable {
+
+  &:active,
+  &:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}
+
+// 动画
+// ========================================
+
+// 基础动画
+@mixin animation($animation...) {
+  animation: $animation;
+}
+
+// 关键帧动画定义
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// 加载动画
+@mixin loading-spinner($size: 16px, $color: $primary-color, $border-width: 2px) {
+  width: $size;
+  height: $size;
+  border: $border-width solid transparent;
+  border-top: $border-width solid $color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// 淡入淡出
+@mixin fade-in($duration: $transition-duration-base) {
+  opacity: 0;
+  animation: fadeIn $duration ease-in-out forwards;
+}
+
+@mixin fade-out($duration: $transition-duration-base) {
+  opacity: 1;
+  animation: fadeOut $duration ease-in-out forwards;
+}
+
+// 实用工具
+// ========================================
+
+// 清除默认样式
+@mixin reset-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin reset-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+// 滚动条样式（Webkit）
+@mixin scrollbar($size: 8px, $track-color: $gray-100, $thumb-color: $gray-300) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $border-radius-full;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $border-radius-full;
+
+    &:hover {
+      background: darken($thumb-color, 10%);
+    }
   }
 }

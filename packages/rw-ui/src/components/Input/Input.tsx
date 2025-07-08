@@ -1,10 +1,7 @@
-// packages/rw-ui/src/components/Input/Input.tsx
-
 import React, { forwardRef } from 'react';
-import clsx from 'clsx';
 import styles from './Input.module.scss';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /** 输入框标签 */
   label?: string;
   /** 输入框尺寸 */
@@ -39,8 +36,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       suffix,
       clearable = false,
       onClear,
-      containerClassName,
-      className,
+      containerClassName = '',
+      className = '',
       disabled,
       value,
       ...props
@@ -55,35 +52,49 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onClear?.();
     };
 
+    // 手动组合类名，避免 clsx 依赖
+    const containerClasses = [
+      styles.container,
+      containerClassName
+    ].filter(Boolean).join(' ');
+
+    const labelClasses = [
+      styles.label,
+      required && styles.required
+    ].filter(Boolean).join(' ');
+
+    const wrapperClasses = [
+      styles.inputWrapper,
+      styles[size],
+      hasError && styles.error,
+      disabled && styles.disabled,
+      prefix && styles.hasPrefix,
+      (suffix || showClearButton) && styles.hasSuffix
+    ].filter(Boolean).join(' ');
+
+    const inputClasses = [
+      styles.input,
+      className
+    ].filter(Boolean).join(' ');
+
     return (
-      <div className={clsx(styles.container, containerClassName)}>
+      <div className={containerClasses}>
         {/* 标签 */}
         {label && (
-          <label className={clsx(styles.label, { [styles.required]: required })}>
+          <label className={labelClasses}>
             {label}
           </label>
         )}
 
         {/* 输入框容器 */}
-        <div
-          className={clsx(
-            styles.inputWrapper,
-            styles[size],
-            {
-              [styles.error]: hasError,
-              [styles.disabled]: disabled,
-              [styles.hasPrefix]: prefix,
-              [styles.hasSuffix]: suffix || showClearButton,
-            }
-          )}
-        >
+        <div className={wrapperClasses}>
           {/* 前缀 */}
           {prefix && <span className={styles.prefix}>{prefix}</span>}
 
           {/* 输入框 */}
           <input
             ref={ref}
-            className={clsx(styles.input, className)}
+            className={inputClasses}
             disabled={disabled}
             value={value}
             {...props}
